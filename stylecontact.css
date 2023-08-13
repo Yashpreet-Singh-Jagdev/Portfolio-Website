@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.Navbar{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: cadetblue;
+}
+.Navbtn{
+    color:white;
+    text-decoration: none;
+    padding: 5px 30px;
+    font-size: 17px;
+    background-color: cadetblue;
+}
+.Navspace{
+    margin-left: 240px;
+}
+body{
+    height:80vh;
+    background-color: black;
+}

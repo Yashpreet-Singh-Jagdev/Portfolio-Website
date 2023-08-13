@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>Portfolio Website</title>
+</head>
+
+<body>
+    <nav class="Navbar">
+        <div class="Navspace">
+            <a class="Navbtn" href="/Home.html">Home</a>
+            <a class="Navbtn" href="#">About Me</a>
+            <a class="Navbtn" href="/Contact.html">Contact</a>
+            <a class="Navbtn" href="#">Portfolio</a>
+            <a class="Navbtn" href="#">CV & Resume</a>
+            <span id="socialmedia">
+                <a class="Button" href="https://www.linkedin.com/in/yashpreet-singh-jagdav-1751b0253"><img
+                        class="button" src="/LinkedIn-Button.png"></a>
+                <a class="Button" href="https://github.com/account"><img class="button" src="/githubimage.png"></a>
+            </span>
+
+        </div>
+    </nav>
+    <span id="name">Hi I'm Yashpreet Singh Jagdev</span>
+    <span id="content">I am a passionate Full Stack Web Developer and I can help you by developing customised websites
+        for Your Business using <span id="element"></span></span>
+    <span><img id="photo" src="/photo.jpg"></span>
+
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['HTML', 'CSS', 'Bootstrap', 'Javascript', 'ReactJS', 'NodeJS', 'MongoDB'],
+            typeSpeed: 90,
+            loop: true,
+            loopCount: Infinity
+        });
+    </script>
+</body>
+
+</html>
