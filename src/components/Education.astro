@@ -1,0 +1,115 @@
+---
+const education = [
+  {
+    institution: "JECRC Foundation, Jaipur",
+    degree: "Bachelor of Technology — Information Technology",
+    period: "Nov 2022 – May 2026",
+    grade: "7.32 CGPA",
+    details: "Specialized in Core Computer Science, Distributed Systems, Database Management Systems, Data Structures & Algorithms, and Cloud Infrastructure."
+  },
+  {
+    institution: "Modern School, Kota",
+    degree: "Senior Secondary Education (Class XII)",
+    period: "Apr 2020 – Jul 2021",
+    grade: "81%",
+    details: "Focused on Physics, Chemistry, and Mathematics (PCM) foundation with computer science electives."
+  }
+];
+---
+
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg>
+        Academic Background
+      </span>
+      <h2 class="section-title">Education & Foundation</h2>
+      <p class="section-desc">
+        Undergraduate academic trajectory and educational credentials.
+      </p>
+    </div>
+
+    <div class="education-grid">
+      {education.map((edu) => (
+        <div class="card education-card">
+          <div class="edu-top">
+            <div>
+              <h3 class="edu-degree">{edu.degree}</h3>
+              <p class="edu-institution">{edu.institution}</p>
+            </div>
+            <div class="edu-meta">
+              <span class="edu-period">{edu.period}</span>
+              <span class="pill pill-accent">{edu.grade}</span>
+            </div>
+          </div>
+          <p class="edu-details">{edu.details}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .education-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .education-card {
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .edu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .edu-degree {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .edu-institution {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin-top: 0.15rem;
+  }
+
+  .edu-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .edu-period {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .edu-details {
+    font-size: 0.8875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .edu-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

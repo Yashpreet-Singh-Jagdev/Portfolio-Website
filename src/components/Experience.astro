@@ -1,0 +1,177 @@
+---
+const experiences = [
+  {
+    company: "Quabyt Tech",
+    role: "Associate Consultant Software Engineer",
+    period: "Jun 2026 – Aug 2026",
+    badge: "Internship",
+    description: "Contributed to VFab, a mission-critical semiconductor fabrication web app utilized for real-time monitoring and visualization of complex semiconductor manufacturing workflows.",
+    highlights: [
+      "Implemented modular CRUD functionality for semiconductor tool components and recipe management systems.",
+      "Architected a custom Skip Sign-in Flow enabling guest preview for specific public modules while securing sensitive modules.",
+      "Integrated Azure Blob Storage to deliver time-limited SAS signed URLs for document access security, and monitored production failures via Azure Portal.",
+      "Engineered 3D scientific data rendering with VTKJS for VTK files and established unit testing suites using Vitest and PyTest."
+    ],
+    skills: ["TypeScript", "Node.js", "Azure Blob", "Azure Portal", "VTKJS", "Vitest", "PyTest"]
+  },
+  {
+    company: "TappyTray",
+    role: "SDE – Intern",
+    period: "Jan 2026",
+    badge: "Internship",
+    description: "Contributed to TappyTray, a resident society management mobile platform streamlining day-to-day community workflows and security gates.",
+    highlights: [
+      "Built resilient backend services following a clean 3-tier architecture (Controller, Service, Repository layers).",
+      "Engineered end-to-end logic for core society modules including Guest Pass approvals, Flat Requests, and Join Society onboarding.",
+      "Designed and documented RESTful APIs with Swagger/OpenAPI for rapid mobile client integration.",
+      "Managed relational data storage and queries using SQLite with high data integrity."
+    ],
+    skills: ["Node.js", "Express.js", "Swagger", "SQLite", "3-Tier Architecture", "REST APIs"]
+  }
+];
+---
+
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        Work Experience
+      </span>
+      <h2 class="section-title">Industry Experience & Internships</h2>
+      <p class="section-desc">
+        Real-world experience designing backend micro-services, implementing cloud storage with signed URLs, 3D visualization, and automated testing.
+      </p>
+    </div>
+
+    <div class="experience-list">
+      {experiences.map((exp) => (
+        <article class="card experience-card">
+          <div class="exp-header">
+            <div class="exp-title-block">
+              <h3 class="exp-company">{exp.company}</h3>
+              <p class="exp-role">{exp.role}</p>
+            </div>
+            <div class="exp-meta">
+              <span class="exp-period">{exp.period}</span>
+              <span class="pill pill-accent">{exp.badge}</span>
+            </div>
+          </div>
+
+          <p class="exp-desc">{exp.description}</p>
+
+          <ul class="exp-highlights">
+            {exp.highlights.map((item) => (
+              <li>
+                <span class="bullet-icon">▹</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="exp-skills">
+            {exp.skills.map((skill) => (
+              <span class="pill">{skill}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .experience-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .exp-company {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .exp-role {
+    font-size: 0.9375rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-top: 0.15rem;
+  }
+
+  .exp-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .exp-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .exp-highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .exp-highlights li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .bullet-icon {
+    color: var(--accent);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  .exp-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-subtle);
+  }
+
+  @media (max-width: 640px) {
+    .exp-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

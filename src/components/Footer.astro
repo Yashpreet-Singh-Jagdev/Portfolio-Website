@@ -1,0 +1,171 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <span class="footer-name">Yashpreet Singh Jagdev</span>
+        <span class="footer-role">Software Engineer</span>
+      </div>
+      <p class="footer-copy">
+        © {currentYear} Yashpreet Singh Jagdev. Built with Astro & Vanilla CSS.
+      </p>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-links">
+        <a 
+          href="https://github.com/Yashpreet-Singh-Jagdev" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          GitHub
+        </a>
+        <span class="dot-separator">•</span>
+        <a 
+          href="https://www.linkedin.com/in/yashpreet-singh-jagdev-1751b0253/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          LinkedIn
+        </a>
+        <span class="dot-separator">•</span>
+        <a 
+          href="mailto:yashpreet369@gmail.com" 
+          class="footer-link"
+        >
+          Email
+        </a>
+        <span class="dot-separator">•</span>
+        <a 
+          href="/blog" 
+          class="footer-link"
+        >
+          Blog
+        </a>
+      </div>
+
+      <button type="button" id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
+        Back to top
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 3rem 0;
+    background-color: var(--bg-subtle);
+    margin-top: auto;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .footer-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  .footer-role {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .footer-copy {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-link:hover {
+    color: var(--accent);
+  }
+
+  .dot-separator {
+    color: var(--text-faint);
+    font-size: 0.75rem;
+  }
+
+  .back-to-top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--transition-fast);
+  }
+
+  .back-to-top-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 680px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .footer-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  const backToTopBtn = document.getElementById('back-to-top');
+  backToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

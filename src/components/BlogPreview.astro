@@ -1,0 +1,178 @@
+---
+const featuredPost = {
+  title: "Architecting Resilient Backend Systems: From 3-Tier Micro-APIs to RAG Pipelines",
+  date: "October 2026",
+  readingTime: "5 min read",
+  category: "Systems & Architecture",
+  excerpt: "An architectural exploration of designing clean 3-tier services, implementing time-limited signed cloud URLs for file storage, and integrating robust Retrieval-Augmented Generation (RAG) fallback workflows.",
+  tags: ["TypeScript", "Node.js", "RAG Architecture", "System Design"],
+  slug: "/blog"
+};
+---
+
+<section class="section" id="blog-preview">
+  <div class="container">
+    <div class="section-header">
+      <div class="header-with-action">
+        <div>
+          <span class="section-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Technical Writing
+          </span>
+          <h2 class="section-title">Engineering Notes & Articles</h2>
+          <p class="section-desc">
+            Deep-dives into backend architectures, AI integration patterns, and software reliability lessons learned while building in production.
+          </p>
+        </div>
+        <a href="/blog" class="btn btn-secondary view-all-btn">
+          View Blog Page
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <a href={featuredPost.slug} class="featured-post-link">
+      <article class="card featured-post-card">
+        <div class="featured-meta-row">
+          <span class="pill pill-accent">{featuredPost.category}</span>
+          <span class="post-date">{featuredPost.date}</span>
+          <span class="dot-sep">•</span>
+          <span class="post-readtime">{featuredPost.readingTime}</span>
+        </div>
+
+        <h3 class="post-title">
+          {featuredPost.title}
+        </h3>
+
+        <p class="post-excerpt">
+          {featuredPost.excerpt}
+        </p>
+
+        <div class="post-footer">
+          <div class="post-tags">
+            {featuredPost.tags.map((tag) => (
+              <span class="pill">{tag}</span>
+            ))}
+          </div>
+
+          <span class="read-more-cta">
+            Read article
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </article>
+    </a>
+  </div>
+</section>
+
+<style>
+  .header-with-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .view-all-btn {
+    align-self: flex-start;
+  }
+
+  .featured-post-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .featured-post-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    cursor: pointer;
+  }
+
+  .featured-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .post-date, .post-readtime {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  .dot-sep {
+    color: var(--text-faint);
+    font-size: 0.75rem;
+  }
+
+  .post-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    transition: color var(--transition-fast);
+  }
+
+  .featured-post-card:hover .post-title {
+    color: var(--accent);
+  }
+
+  .post-excerpt {
+    font-size: 0.9625rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed var(--border-subtle);
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .read-more-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent);
+    transition: transform var(--transition-fast);
+  }
+
+  .featured-post-card:hover .read-more-cta svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 640px) {
+    .featured-post-card {
+      padding: 1.5rem;
+    }
+    .post-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>

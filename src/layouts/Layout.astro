@@ -1,23 +1,153 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title = "Yashpreet Singh Jagdev — Software Engineer & Full-Stack Developer",
+  description = "Portfolio of Yashpreet Singh Jagdev, a Software Engineer and IT undergraduate specializing in backend systems, TypeScript, Node.js, Python, and cloud services.",
+  image = "/yashpreet.jpg",
+  canonicalURL = Astro.url.href,
+  type = "website",
+} = Astro.props;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Yashpreet Singh Jagdev",
+  "jobTitle": "Software Engineer",
+  "url": "https://github.com/Yashpreet-Singh-Jagdev",
+  "email": "mailto:yashpreet369@gmail.com",
+  "telephone": "+91-9352637485",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kota",
+    "addressRegion": "Rajasthan",
+    "addressCountry": "India"
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "JECRC Foundation, Jaipur"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/yashpreet-singh-jagdev-1751b0253/",
+    "https://github.com/Yashpreet-Singh-Jagdev"
+  ],
+  "knowsAbout": [
+    "TypeScript",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "React.js",
+    "Python",
+    "FastAPI",
+    "Docker",
+    "Retrieval-Augmented Generation (RAG)",
+    "Azure Blob Storage"
+  ]
+};
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Yashpreet Singh Jagdev" />
+    <meta name="keywords" content="Yashpreet Singh Jagdev, Software Engineer, Full Stack Developer, Backend Developer, TypeScript, Node.js, Express, React, JECRC, Kota, Portfolio" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Yashpreet Singh Jagdev" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/yashpreet.jpg" />
+    <link rel="icon" href="/yashpreet.jpg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts Preconnect & Inter / Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" 
+      rel="stylesheet" 
+    />
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    <!-- Zero-FOUC Theme Initialization Script -->
+    <script is:inline>
+      (function() {
+        try {
+          const storedTheme = localStorage.getItem('theme');
+          if (storedTheme) {
+            document.documentElement.setAttribute('data-theme', storedTheme);
+          } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const defaultTheme = prefersDark ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', defaultTheme);
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <Navbar currentPath={Astro.url.pathname} />
+    
+    <slot />
+
+    <Footer />
+
+    <!-- Toast Notification for interactive copy feedback -->
+    <div id="toast-notification" role="status" aria-live="polite">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span id="toast-message">Email copied to clipboard!</span>
+    </div>
+
+    <!-- Global Toast Script -->
+    <script>
+      window.showToast = function(message = 'Copied to clipboard!') {
+        const toast = document.getElementById('toast-notification');
+        const toastMsg = document.getElementById('toast-message');
+        if (toast && toastMsg) {
+          toastMsg.textContent = message;
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 2400);
+        }
+      };
+    </script>
+  </body>
+</html>

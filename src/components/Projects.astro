@@ -1,0 +1,263 @@
+---
+const projects = [
+  {
+    title: "Perspectify",
+    subtitle: "AI-Powered Persona & Perspective Intelligence Engine",
+    date: "Nov 2024",
+    award: "Ranked 4th @ MNIT & 6th @ JECRC Hackathon",
+    awardIcon: "🏆",
+    description: "An AI-powered conversational application that answers complex multi-domain questions directly from the cognitive perspectives of notable figures like Elon Musk, Abhijit Chavda, and domain leaders.",
+    highlights: [
+      "Built a Retrieval-Augmented Generation (RAG) pipeline utilizing Botpress vector storage for hyper-contextual persona knowledge retrieval.",
+      "Engineered an automated OpenAI fallback mechanism that activates seamlessly whenever dataset coverage is incomplete.",
+      "Integrated live News API to infuse real-time breaking events and context into persona discussions."
+    ],
+    tags: ["RAG Architecture", "OpenAI API", "Botpress", "Node.js", "Express.js", "News API"],
+    githubUrl: "https://github.com/Yashpreet-Singh-Jagdev",
+    liveUrl: "https://github.com/Yashpreet-Singh-Jagdev"
+  },
+  {
+    title: "Yatri Sakha",
+    subtitle: "AI-Enhanced Railway Grievance & Passenger Assistance System",
+    date: "Sep 2024",
+    award: "2nd Rank (1st Runner-up) @ SIH'24 Prelims",
+    awardIcon: "🥈",
+    description: "An AI-driven platform revolutionizing Rail Madad's passenger grievance resolution workflow by combining automated verification, predictive priority scoring, and instant multi-channel dispatch.",
+    highlights: [
+      "Integrated official PNR APIs to dynamically validate passenger booking status, train schedule, and coach details.",
+      "Leveraged Google Gemini AI to analyze complaint severity, detect urgency, and automatically route tickets to appropriate railway authorities.",
+      "Implemented Cloudinary for tamper-resistant photographic evidence uploads and integrated Twilio for instant SMS dispatch."
+    ],
+    tags: ["Google Gemini API", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Twilio API", "PNR API"],
+    githubUrl: "https://github.com/Yashpreet-Singh-Jagdev",
+    liveUrl: "https://github.com/Yashpreet-Singh-Jagdev"
+  }
+];
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        Featured Projects
+      </span>
+      <h2 class="section-title">Engineered Applications & Prototypes</h2>
+      <p class="section-desc">
+        Award-winning hackathon platforms and production prototypes blending LLMs, API integrations, and scalable full-stack web architectures.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      {projects.map((proj) => (
+        <article class="card project-card">
+          <div class="project-top">
+            <div class="project-header-text">
+              <div class="project-meta-row">
+                <span class="project-date">{proj.date}</span>
+                {proj.award && (
+                  <span class="project-award-badge" title="Hackathon Recognition">
+                    <span class="award-emoji">{proj.awardIcon}</span>
+                    <span>{proj.award}</span>
+                  </span>
+                )}
+              </div>
+              <h3 class="project-title">{proj.title}</h3>
+              <p class="project-subtitle">{proj.subtitle}</p>
+            </div>
+            
+            <div class="project-links">
+              <a 
+                href={proj.githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="icon-link"
+                aria-label={`View ${proj.title} on GitHub`}
+                title="View Source on GitHub"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <a 
+                href={proj.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="icon-link"
+                aria-label={`Explore ${proj.title}`}
+                title="External Link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <p class="project-desc">{proj.description}</p>
+
+          <div class="project-details">
+            <h4 class="details-heading">Key Implementation Details:</h4>
+            <ul class="project-bullets">
+              {proj.highlights.map((bullet) => (
+                <li>
+                  <span class="bullet-caret">›</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="project-tags">
+            {proj.tags.map((tag) => (
+              <span class="pill">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .project-card {
+    padding: 1.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .project-meta-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .project-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .project-award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    background-color: var(--accent-subtle);
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .award-emoji {
+    font-size: 0.85rem;
+  }
+
+  .project-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-top: 0.15rem;
+  }
+
+  .project-subtitle {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin-top: 0.2rem;
+  }
+
+  .project-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+  }
+
+  .icon-link:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .project-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .details-heading {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.8875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .bullet-caret {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border-subtle);
+  }
+</style>
