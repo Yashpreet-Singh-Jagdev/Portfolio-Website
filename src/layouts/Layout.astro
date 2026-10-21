@@ -1,7 +1,5 @@
 ---
 import '../styles/global.css';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -87,8 +85,7 @@ const personSchema = {
     <meta property="twitter:image" content={image} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/yashpreet.jpg" />
-    <link rel="icon" href="/yashpreet.jpg" />
+    <link rel="icon" type="image/svg+xml" href="#" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Fonts Preconnect & Inter / Plus Jakarta Sans & JetBrains Mono -->
@@ -121,11 +118,8 @@ const personSchema = {
     </script>
   </head>
   <body>
-    <Navbar currentPath={Astro.url.pathname} />
-    
     <slot />
 
-    <Footer />
 
     <!-- Toast Notification for interactive copy feedback -->
     <div id="toast-notification" role="status" aria-live="polite">

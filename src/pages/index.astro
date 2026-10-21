@@ -1,27 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Skills from '../components/Skills.astro';
-import Achievements from '../components/Achievements.astro';
-import Education from '../components/Education.astro';
-import BlogPreview from '../components/BlogPreview.astro';
-import Contact from '../components/Contact.astro';
+import Main from '../components/main.astro';
 
 const seoTitle = "Yashpreet Singh Jagdev";
 const seoDescription = "Portfolio of Yashpreet Singh Jagdev, a Software Engineer and IT undergraduate at JECRC Foundation. Specializing in backend architectures, TypeScript, Node.js, and cloud services.";
 ---
 
 <Layout title={seoTitle} description={seoDescription}>
-  <main id="main-content">
-    <Hero />
-    <Experience />
-    <Projects />
-    <Skills />
-    <Achievements />
-    <Education />
-    <BlogPreview />
-    <Contact />
-  </main>
+  <Main />
 </Layout>

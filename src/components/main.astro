@@ -1,0 +1,649 @@
+---
+import { Image } from "astro:assets";
+import myImage from "../assets/Img-1.jpeg";
+
+const currentPath = Astro.url.pathname;
+const isBlog = currentPath.startsWith('/blog');
+
+const experiences = [
+  {
+    company: "Quabyt Tech",
+    role: "Associate Consultant Software Engineer",
+    period: "Jun 2026 – Aug 2026",
+    badge: "Internship",
+    description: "Contributed to VFab, a mission-critical semiconductor fabrication web app utilized for real-time monitoring and visualization of complex semiconductor manufacturing workflows.",
+    highlights: [
+      "Implemented modular CRUD functionality for semiconductor tool components and recipe management systems.",
+      "Architected a custom Skip Sign-in Flow enabling guest preview for specific public modules while securing sensitive modules.",
+      "Integrated Azure Blob Storage to deliver time-limited SAS signed URLs for document access security, and monitored production failures via Azure Portal.",
+      "Engineered 3D scientific data rendering with VTKJS for VTK files and established unit testing suites using Vitest and PyTest."
+    ],
+    skills: ["TypeScript", "Node.js", "Azure Blob", "Azure Portal", "VTKJS", "Vitest", "PyTest"]
+  },
+  {
+    company: "TappyTray",
+    role: "SDE – Intern",
+    period: "Jan 2026",
+    badge: "Internship",
+    description: "Contributed to TappyTray, a resident society management mobile platform streamlining day-to-day community workflows and security gates.",
+    highlights: [
+      "Built resilient backend services following a clean 3-tier architecture (Controller, Service, Repository layers).",
+      "Engineered end-to-end logic for core society modules including Guest Pass approvals, Flat Requests, and Join Society onboarding.",
+      "Designed and documented RESTful APIs with Swagger/OpenAPI for rapid mobile client integration.",
+      "Managed relational data storage and queries using SQLite with high data integrity."
+    ],
+    skills: ["Node.js", "Express.js", "Swagger", "SQLite", "3-Tier Architecture", "REST APIs"]
+  }
+];
+
+const projects = [
+  {
+    title: "Perspectify",
+    subtitle: "AI-Powered Persona & Perspective Intelligence Engine",
+    date: "Nov 2024",
+    award: "Ranked 4th @ MNIT & 6th @ JECRC Hackathon",
+    awardIcon: "🏆",
+    description: "An AI-powered conversational application that answers complex multi-domain questions directly from the cognitive perspectives of notable figures like Elon Musk, Abhijit Chavda, and domain leaders.",
+    highlights: [
+      "Built a Retrieval-Augmented Generation (RAG) pipeline utilizing Botpress vector storage for hyper-contextual persona knowledge retrieval.",
+      "Engineered an automated OpenAI fallback mechanism that activates seamlessly whenever dataset coverage is incomplete.",
+      "Integrated live News API to infuse real-time breaking events and context into persona discussions."
+    ],
+    tags: ["RAG Architecture", "OpenAI API", "Botpress", "Node.js", "Express.js", "News API"],
+    githubUrl: "https://github.com/Yashpreet-Singh-Jagdev",
+    liveUrl: "https://github.com/Yashpreet-Singh-Jagdev"
+  },
+  {
+    title: "Yatri Sakha",
+    subtitle: "AI-Enhanced Railway Grievance & Passenger Assistance System",
+    date: "Sep 2024",
+    award: "2nd Rank (1st Runner-up) @ SIH'24 Prelims",
+    awardIcon: "🥈",
+    description: "An AI-driven platform revolutionizing Rail Madad's passenger grievance resolution workflow by combining automated verification, predictive priority scoring, and instant multi-channel dispatch.",
+    highlights: [
+      "Integrated official PNR APIs to dynamically validate passenger booking status, train schedule, and coach details.",
+      "Leveraged Google Gemini AI to analyze complaint severity, detect urgency, and automatically route tickets to appropriate railway authorities.",
+      "Implemented Cloudinary for tamper-resistant photographic evidence uploads and integrated Twilio for instant SMS dispatch."
+    ],
+    tags: ["Google Gemini API", "Node.js", "Express.js", "MongoDB", "Cloudinary", "Twilio API", "PNR API"],
+    githubUrl: "https://github.com/Yashpreet-Singh-Jagdev",
+    liveUrl: "https://github.com/Yashpreet-Singh-Jagdev"
+  }
+];
+
+const skillCategories = [
+  {
+    category: "Primary Stack",
+    description: "Core languages and frameworks utilized daily for production and client applications.",
+    skills: ["TypeScript", "Node.js", "Express.js", "MongoDB", "React.js"]
+  },
+  {
+    category: "Backend & Systems",
+    description: "Systems programming, asynchronous web APIs, and relational/document databases.",
+    skills: ["Python", "FastAPI", "C++", "SQLite", "RESTful APIs", "Swagger / OpenAPI"]
+  },
+  {
+    category: "DevOps & Cloud",
+    description: "Cloud storage orchestration, containerization, and continuous integration workflows.",
+    skills: ["Azure Blob Storage", "Azure Portal", "Docker", "GitHub Actions", "CI/CD Pipelines"]
+  },
+  {
+    category: "Testing, Tools & SEO",
+    description: "Automated unit/integration testing suites, developer tooling, and search optimization.",
+    skills: ["Vitest", "PyTest", "Postman", "Git", "GitHub", "Search Engine Optimization (SEO)", "VTKJS"]
+  }
+];
+
+const achievements = [
+  {
+    rank: "1st Runner-up",
+    event: "Smart India Hackathon '24 Prelims",
+    highlight: "Outperformed 177 qualified teams nationwide",
+    description: "Awarded 2nd Rank for architecting Yatri Sakha, an AI-enhanced Rail Madad grievance management and prioritization system integrating PNR validation and Gemini AI.",
+    badge: "National Hackathon",
+    year: "2024"
+  },
+  {
+    rank: "4th Position (Finalist)",
+    event: "MNIT SphinX'24 Hackathon",
+    highlight: "Led engineering team against 2,000+ competitors",
+    description: "Built and pitched Perspectify, a dynamic RAG chatbot engine delivering multi-persona conversational insights with real-time news retrieval.",
+    badge: "National Hackathon",
+    year: "2024"
+  },
+  {
+    rank: "6th Position",
+    event: "JECRC University Innov8'24 Hackathon",
+    highlight: "Competed against 700+ teams across 20+ states",
+    description: "Demonstrated full-stack scalability, real-time fallbacks, and innovative AI UX to domain jury panels and industry executives.",
+    badge: "Inter-State Hackathon",
+    year: "2024"
+  },
+  {
+    rank: "Core Technical Team",
+    event: "JECRC Renaissance'25",
+    highlight: "Technical leadership for central university fest",
+    description: "Coordinating technical operations, event infrastructure, and digital workflows for one of Northern India's largest youth tech-cultural festivals.",
+    badge: "Leadership & Community",
+    year: "2025"
+  }
+];
+
+
+const featuredPost = {
+  title: "Architecting Resilient Backend Systems: From 3-Tier Micro-APIs to RAG Pipelines",
+  date: "October 2026",
+  readingTime: "5 min read",
+  category: "Systems & Architecture",
+  excerpt: "An architectural exploration of designing clean 3-tier services, implementing time-limited signed cloud URLs for file storage, and integrating robust Retrieval-Augmented Generation (RAG) fallback workflows.",
+  tags: ["TypeScript", "Node.js", "RAG Architecture", "System Design"],
+  slug: "/blog"
+};
+
+
+const currentYear = new Date().getFullYear();
+---
+
+<header class="sticky [top:0] z-[50] bg-[var(--header-bg)] [backdrop-filter:blur(14px)] [-webkit-backdrop-filter:blur(14px)] [border-bottom:1px_solid_var(--header-border)] [transition:background-color_var(--transition-base),_border-color_var(--transition-base)]" id="site-header">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem] flex items-center justify-between h-[64px]">
+
+    <!-- Desktop Navigation -->
+    <nav class="flex items-center max-[820px]:hidden" aria-label="Main Navigation">
+      <ul class="flex items-center list-none gap-[1.75rem]">
+        <li><a href={isBlog ? "/#about" : "#about"} class="text-[0.875rem] font-medium text-[var(--text-secondary)] [transition:color_var(--transition-fast)] relative p-[0.25rem_0] hover:text-[var(--text-primary)]">About</a></li>
+        <li><a href={isBlog ? "/#experience" : "#experience"} class="text-[0.875rem] font-medium text-[var(--text-secondary)] [transition:color_var(--transition-fast)] relative p-[0.25rem_0] hover:text-[var(--text-primary)]">Experience</a></li>
+        <li><a href={isBlog ? "/#projects" : "#projects"} class="text-[0.875rem] font-medium text-[var(--text-secondary)] [transition:color_var(--transition-fast)] relative p-[0.25rem_0] hover:text-[var(--text-primary)]">Projects</a></li>
+        <li><a href={isBlog ? "/#skills" : "#skills"} class="text-[0.875rem] font-medium text-[var(--text-secondary)] [transition:color_var(--transition-fast)] relative p-[0.25rem_0] hover:text-[var(--text-primary)]">Skills</a></li>
+        <li><a href={isBlog ? "/#achievements" : "#achievements"} class="text-[0.875rem] font-medium text-[var(--text-secondary)] [transition:color_var(--transition-fast)] relative p-[0.25rem_0] hover:text-[var(--text-primary)]">Honors</a></li>
+        <li>
+          <a 
+            href="/blog" 
+            class={`text-[0.875rem] font-medium ${isBlog ? 'text-[var(--text-primary)]' : 'text-[var(--text-secondary)]'} [transition:color_var(--transition-fast)] relative p-[0.25rem_0] hover:text-[var(--text-primary)]`}
+          >
+            Blog
+            <span class="inline-block w-[5px] h-[5px] rounded-[50%] bg-[var(--accent)] ml-[0.35rem] align-middle"></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-[0.75rem]">
+      <!-- Theme Switcher -->
+      <button 
+        type="button" 
+        id="theme-toggle" 
+        class="flex items-center justify-center w-[38px] h-[38px] rounded-[8px] text-[var(--text-secondary)] [border:1px_solid_var(--border-subtle)] bg-[var(--bg-card)] [transition:all_var(--transition-fast)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-subtle)]" 
+        aria-label="Toggle Dark / Light Theme"
+        title="Toggle Theme"
+      >
+        <!-- Sun Icon (shown in dark mode) -->
+        <svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon (shown in light mode) -->
+        <svg class="block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <a href={isBlog ? "/#contact" : "#contact"} class="inline-flex items-center justify-center gap-[0.5rem] text-[0.875rem] font-medium p-[0.6rem_1.15rem] rounded-[8px] [transition:all_var(--transition-fast)] no-underline cursor-pointer whitespace-nowrap bg-[var(--text-primary)] text-[var(--bg-body)] [border:1px_solid_var(--text-primary)] hover:[opacity:0.92] hover:[transform:translateY(-1px)] [text-decoration:none] text-[0.8125rem] p-[0.45rem_0.95rem] max-[820px]:hidden">
+        Contact
+      </a>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button 
+        type="button" 
+        id="mobile-menu-toggle" 
+        class="hidden flex-col justify-center items-center gap-[5px] w-[38px] h-[38px] rounded-[8px] bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] group max-[820px]:flex" 
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <span class="w-[18px] h-[2px] bg-[var(--text-primary)] rounded-[2px] [transition:transform_var(--transition-fast),_opacity_var(--transition-fast)] group-aria-expanded:[transform:translateY(3.5px)_rotate(45deg)] group-aria-expanded:[transform:translateY(-3.5px)_rotate(-45deg)]"></span>
+        <span class="w-[18px] h-[2px] bg-[var(--text-primary)] rounded-[2px] [transition:transform_var(--transition-fast),_opacity_var(--transition-fast)] group-aria-expanded:[transform:translateY(3.5px)_rotate(45deg)] group-aria-expanded:[transform:translateY(-3.5px)_rotate(-45deg)]"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="hidden bg-[var(--bg-body)] [border-bottom:1px_solid_var(--border-subtle)] p-[1.25rem_1.5rem]" id="mobile-drawer">
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <ul class="list-none flex flex-col gap-[0.85rem]">
+        <li><a href={isBlog ? "/#about" : "#about"} class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)]">About</a></li>
+        <li><a href={isBlog ? "/#experience" : "#experience"} class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)]">Experience</a></li>
+        <li><a href={isBlog ? "/#projects" : "#projects"} class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)]">Projects</a></li>
+        <li><a href={isBlog ? "/#skills" : "#skills"} class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)]">Skills</a></li>
+        <li><a href={isBlog ? "/#achievements" : "#achievements"} class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)]">Honors & Hackathons</a></li>
+        <li><a href="/blog" class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)]">Blog & Engineering Notes</a></li>
+        <li><a href={isBlog ? "/#contact" : "#contact"} class="mobile-nav-link text-[1rem] font-medium text-[var(--text-secondary)] block p-[0.4rem_0] hover:text-[var(--text-primary)] text-[var(--accent)] font-semibold">Get In Touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+<section class="p-[4.5rem_0] [border-bottom:1px_solid_var(--border-subtle)] max-[768px]:p-[3.5rem_0] last-of-type:[border-bottom:none] pt-[4.5rem] pb-[4rem]" id="about">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem]">
+    <div class="flex items-center justify-between flex-wrap gap-[1rem] mb-[2rem]">
+      
+    </div>
+
+    <div class="hero-content">
+        <Image src={myImage} alt="Yashpreet Singh Jagdev" class="w-[120px] h-[120px] rounded-[50%] object-cover block" />
+      
+        <h1 class="text-[3.25rem] font-extrabold tracking-[-0.04em] leading-[1.1] text-[var(--text-primary)] mb-[0.5rem] max-[640px]:text-[2.35rem] block">
+        Yashpreet Singh Jagdev
+      </h1>
+
+
+      <!-- Action CTAs -->
+      <div class="flex items-center flex-wrap gap-[0.75rem] mb-[3.5rem]">
+        <a href="#contact" class="inline-flex items-center justify-center gap-[0.5rem] text-[0.875rem] font-medium p-[0.6rem_1.15rem] rounded-[8px] [transition:all_var(--transition-fast)] no-underline cursor-pointer whitespace-nowrap bg-[var(--text-primary)] text-[var(--bg-body)] [border:1px_solid_var(--text-primary)] hover:[opacity:0.92] hover:[transform:translateY(-1px)] [text-decoration:none]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Get in Touch
+        </a>
+
+        <a 
+          href="https://github.com/Yashpreet-Singh-Jagdev" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center justify-center gap-[0.5rem] text-[0.875rem] font-medium p-[0.6rem_1.15rem] rounded-[8px] [transition:all_var(--transition-fast)] no-underline cursor-pointer whitespace-nowrap bg-[var(--bg-card)] text-[var(--text-primary)] [border:1px_solid_var(--border-subtle)] shadow-[var(--shadow-sm)] hover:bg-[var(--bg-subtle)] hover:border-[var(--border-hover)] hover:[transform:translateY(-1px)] [text-decoration:none]"
+          aria-label="GitHub Profile"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          GitHub
+        </a>
+
+        <a 
+          href="https://www.linkedin.com/in/yashpreet-singh-jagdev-1751b0253/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center justify-center gap-[0.5rem] text-[0.875rem] font-medium p-[0.6rem_1.15rem] rounded-[8px] [transition:all_var(--transition-fast)] no-underline cursor-pointer whitespace-nowrap bg-[var(--bg-card)] text-[var(--text-primary)] [border:1px_solid_var(--border-subtle)] shadow-[var(--shadow-sm)] hover:bg-[var(--bg-subtle)] hover:border-[var(--border-hover)] hover:[transform:translateY(-1px)] [text-decoration:none]"
+          aria-label="LinkedIn Profile"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-4 gap-[1rem] max-[860px]:grid-cols-2 max-[640px]:grid-cols-1">
+        <div class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.25rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base)] hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-sm)]">
+          <div class="text-[1.5rem] font-bold font-mono text-[var(--text-primary)] tracking-[-0.03em] leading-[1.2] mb-[0.25rem]">2</div>
+          <div class="text-[0.8125rem] font-semibold text-[var(--text-primary)] leading-[1.35] mb-[0.15rem]">Software Engineering Internships</div>
+          <div class="text-[0.75rem] text-[var(--text-muted)] font-mono">Quabyt Tech & TappyTray</div>
+        </div>
+
+        <div class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.25rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base)] hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-sm)]">
+          <div class="text-[1.5rem] font-bold font-mono text-[var(--text-primary)] tracking-[-0.03em] leading-[1.2] mb-[0.25rem]">1st <span class="text-[1.05rem] text-[var(--accent)] font-semibold">Runner-up</span></div>
+          <div class="text-[0.8125rem] font-semibold text-[var(--text-primary)] leading-[1.35] mb-[0.15rem]">Smart India Hackathon '24</div>
+          <div class="text-[0.75rem] text-[var(--text-muted)] font-mono">Prelims (vs 177 Teams)</div>
+        </div>
+
+        <div class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.25rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base)] hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-sm)]">
+          <div class="text-[1.5rem] font-bold font-mono text-[var(--text-primary)] tracking-[-0.03em] leading-[1.2] mb-[0.25rem]">Rank <span class="text-[1.05rem] text-[var(--accent)] font-semibold">#4</span></div>
+          <div class="text-[0.8125rem] font-semibold text-[var(--text-primary)] leading-[1.35] mb-[0.15rem]">MNIT SphinX'24 Hackathon</div>
+          <div class="text-[0.75rem] text-[var(--text-muted)] font-mono">2,000+ Participants</div>
+        </div>
+
+        <div class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.25rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base)] hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-sm)]">
+          <div class="text-[1.5rem] font-bold font-mono text-[var(--text-primary)] tracking-[-0.03em] leading-[1.2] mb-[0.25rem]">Rank <span class="text-[1.05rem] text-[var(--accent)] font-semibold">#6</span></div>
+          <div class="text-[0.8125rem] font-semibold text-[var(--text-primary)] leading-[1.35] mb-[0.15rem]">JECRC Innov8'24 Hackathon</div>
+          <div class="text-[0.75rem] text-[var(--text-muted)] font-mono">700+ Teams (20+ States)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-[4.5rem_0] [border-bottom:1px_solid_var(--border-subtle)] max-[768px]:p-[3.5rem_0] last-of-type:[border-bottom:none]" id="experience">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem]">
+    <div class="mb-[2.25rem]">
+      <span class="inline-flex items-center gap-[0.4rem] font-mono text-[0.75rem] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold mb-[0.5rem]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+        Work Experience
+      </span>
+      <h2 class="text-[1.85rem] font-bold text-[var(--text-primary)] tracking-[-0.03em] max-[768px]:text-[1.6rem]">Industry Experience & Internships</h2>
+    </div>
+
+    <div class="flex flex-col gap-[1.5rem]">
+      {experiences.map((exp) => (
+        <article class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.5rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base),_background-color_var(--transition-base)] shadow-[var(--shadow-sm)] relative hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-md)] hover:bg-[var(--bg-card-hover)] p-[1.75rem] flex flex-col gap-[1.15rem]">
+          <div class="flex justify-between items-start flex-wrap gap-[0.75rem] max-[640px]:flex-col max-[640px]:items-start">
+            <div class="exp-title-block">
+              <h3 class="text-[1.25rem] font-bold text-[var(--text-primary)] tracking-[-0.02em]">{exp.company}</h3>
+              <p class="text-[0.9375rem] text-[var(--accent)] font-medium mt-[0.15rem]">{exp.role}</p>
+            </div>
+            <div class="flex items-center gap-[0.6rem]">
+              <span class="font-mono text-[0.8125rem] text-[var(--text-muted)]">{exp.period}</span>
+              <span class="inline-flex items-center gap-[0.35rem] font-mono text-[0.75rem] font-medium p-[0.25rem_0.65rem] rounded-[6px] bg-[var(--badge-bg)] text-[var(--badge-text)] [border:1px_solid_var(--badge-border)] [transition:all_var(--transition-fast)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] bg-[var(--accent-subtle)] text-[var(--accent)] border-[var(--border-accent)]">{exp.badge}</span>
+            </div>
+          </div>
+
+          <p class="text-[0.95rem] leading-[1.65] text-[var(--text-secondary)]">{exp.description}</p>
+
+          <ul class="list-none flex flex-col gap-[0.6rem] [&_li]:flex [&_li]:items-start [&_li]:gap-[0.55rem] [&_li]:text-[0.9rem] [&_li]:text-[var(--text-secondary)] [&_li]:leading-[1.6]">
+            {exp.highlights.map((item) => (
+              <li>
+                <span class="text-[var(--accent)] text-[0.85rem] leading-[1.5] shrink-0">▹</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex flex-wrap gap-[0.45rem] pt-[0.5rem] [border-top:1px_dashed_var(--border-subtle)]">
+            {exp.skills.map((skill) => (
+              <span class="inline-flex items-center gap-[0.35rem] font-mono text-[0.75rem] font-medium p-[0.25rem_0.65rem] rounded-[6px] bg-[var(--badge-bg)] text-[var(--badge-text)] [border:1px_solid_var(--badge-border)] [transition:all_var(--transition-fast)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)]">{skill}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="p-[4.5rem_0] [border-bottom:1px_solid_var(--border-subtle)] max-[768px]:p-[3.5rem_0] last-of-type:[border-bottom:none]" id="projects">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem]">
+    <div class="mb-[2.25rem]">
+      <span class="inline-flex items-center gap-[0.4rem] font-mono text-[0.75rem] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold mb-[0.5rem]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"></polyline>
+          <polyline points="8 6 2 12 8 18"></polyline>
+        </svg>
+        Featured Projects
+      </span>
+      <h2 class="text-[1.85rem] font-bold text-[var(--text-primary)] tracking-[-0.03em] max-[768px]:text-[1.6rem]">Engineered Applications & Prototypes</h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-[1.75rem]">
+      {projects.map((proj) => (
+        <article class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.5rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base),_background-color_var(--transition-base)] shadow-[var(--shadow-sm)] relative hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-md)] hover:bg-[var(--bg-card-hover)] p-[1.85rem] flex flex-col gap-[1.25rem]">
+          <div class="flex justify-between items-start gap-[1rem]">
+            <div class="project-header-text">
+              <div class="flex items-center flex-wrap gap-[0.65rem] mb-[0.35rem]">
+                <span class="font-mono text-[0.75rem] text-[var(--text-muted)]">{proj.date}</span>
+                {proj.award && (
+                  <span class="inline-flex items-center gap-[0.35rem] p-[0.2rem_0.55rem] rounded-[9999px] bg-[var(--accent-subtle)] [border:1px_solid_var(--border-accent)] text-[var(--accent)] text-[0.75rem] font-semibold" title="Hackathon Recognition">
+                    <span class="text-[0.85rem]">{proj.awardIcon}</span>
+                    <span>{proj.award}</span>
+                  </span>
+                )}
+              </div>
+              <h3 class="text-[1.45rem] font-bold text-[var(--text-primary)] tracking-[-0.02em] mt-[0.15rem]">{proj.title}</h3>
+              <p class="text-[0.9375rem] text-[var(--text-secondary)] mt-[0.2rem]">{proj.subtitle}</p>
+            </div>
+            
+            <div class="flex items-center gap-[0.5rem]">
+              <a 
+                href={proj.githubUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center justify-center w-[36px] h-[36px] rounded-[8px] bg-[var(--bg-subtle)] [border:1px_solid_var(--border-subtle)] text-[var(--text-secondary)] [transition:all_var(--transition-fast)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:[transform:translateY(-2px)]"
+                aria-label={`View ${proj.title} on GitHub`}
+                title="View Source on GitHub"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </a>
+              <a 
+                href={proj.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="flex items-center justify-center w-[36px] h-[36px] rounded-[8px] bg-[var(--bg-subtle)] [border:1px_solid_var(--border-subtle)] text-[var(--text-secondary)] [transition:all_var(--transition-fast)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:[transform:translateY(-2px)]"
+                aria-label={`Explore ${proj.title}`}
+                title="External Link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <p class="text-[0.95rem] leading-[1.65] text-[var(--text-secondary)]">{proj.description}</p>
+
+          <div class="project-details">
+            <h4 class="text-[0.8125rem] font-semibold uppercase tracking-[0.05em] text-[var(--text-muted)] mb-[0.5rem]">Key Implementation Details:</h4>
+            <ul class="list-none flex flex-col gap-[0.5rem] [&_li]:flex [&_li]:items-start [&_li]:gap-[0.55rem] [&_li]:text-[0.8875rem] [&_li]:text-[var(--text-secondary)] [&_li]:leading-[1.6]">
+              {proj.highlights.map((bullet) => (
+                <li>
+                  <span class="text-[var(--accent)] font-bold text-[1rem] leading-[1.4]">›</span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-[0.45rem] pt-[0.75rem] [border-top:1px_dashed_var(--border-subtle)]">
+            {proj.tags.map((tag) => (
+              <span class="inline-flex items-center gap-[0.35rem] font-mono text-[0.75rem] font-medium p-[0.25rem_0.65rem] rounded-[6px] bg-[var(--badge-bg)] text-[var(--badge-text)] [border:1px_solid_var(--badge-border)] [transition:all_var(--transition-fast)]">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<section class="p-[4.5rem_0] [border-bottom:1px_solid_var(--border-subtle)] max-[768px]:p-[3.5rem_0] last-of-type:[border-bottom:none]" id="achievements">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem]">
+    <div class="mb-[2.25rem]">
+      <span class="inline-flex items-center gap-[0.4rem] font-mono text-[0.75rem] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold mb-[0.5rem]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="7"></circle>
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+        </svg>
+        Honors & Leadership
+      </span>
+      <h2 class="text-[1.85rem] font-bold text-[var(--text-primary)] tracking-[-0.03em] max-[768px]:text-[1.6rem]">Hackathons & Competitive Honors</h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-[1.5rem] max-[680px]:grid-cols-1">
+      {achievements.map((item) => (
+        <div class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.5rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base),_background-color_var(--transition-base)] shadow-[var(--shadow-sm)] relative hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-md)] hover:bg-[var(--bg-card-hover)] p-[1.75rem] flex flex-col">
+          <div class="flex justify-between items-center gap-[0.5rem] mb-[0.75rem]">
+            <span class="font-mono text-[1.05rem] font-bold text-[var(--accent)]">{item.rank}</span>
+            <div class="flex items-center gap-[0.5rem]">
+              <span class="inline-flex items-center gap-[0.35rem] font-mono text-[0.75rem] font-medium p-[0.25rem_0.65rem] rounded-[6px] bg-[var(--badge-bg)] text-[var(--badge-text)] [border:1px_solid_var(--badge-border)] [transition:all_var(--transition-fast)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] bg-[var(--accent-subtle)] text-[var(--accent)] border-[var(--border-accent)]">{item.badge}</span>
+              <span class="font-mono text-[0.75rem] text-[var(--text-muted)]">{item.year}</span>
+            </div>
+          </div>
+          <h3 class="text-[1.15rem] font-bold text-[var(--text-primary)] mb-[0.25rem] tracking-[-0.01em]">{item.event}</h3>
+          <p class="text-[0.875rem] font-semibold text-[var(--text-secondary)] mb-[0.5rem]">{item.highlight}</p>
+          <p class="text-[0.8875rem] leading-[1.6] text-[var(--text-muted)]">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<section class="p-[4.5rem_0] [border-bottom:1px_solid_var(--border-subtle)] max-[768px]:p-[3.5rem_0] last-of-type:[border-bottom:none]" id="blog-preview">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem]">
+    <div class="mb-[2.25rem]">
+      <div class="flex justify-between items-end flex-wrap gap-[1.25rem]">
+        <div>
+          <span class="inline-flex items-center gap-[0.4rem] font-mono text-[0.75rem] uppercase tracking-[0.08em] text-[var(--accent)] font-semibold mb-[0.5rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Technical Writing
+          </span>
+          <h2 class="text-[1.85rem] font-bold text-[var(--text-primary)] tracking-[-0.03em] max-[768px]:text-[1.6rem]">Engineering Notes & Articles</h2>
+        </div>
+        <a href="/blog" class="inline-flex items-center justify-center gap-[0.5rem] text-[0.875rem] font-medium p-[0.6rem_1.15rem] rounded-[8px] [transition:all_var(--transition-fast)] no-underline cursor-pointer whitespace-nowrap bg-[var(--bg-card)] text-[var(--text-primary)] [border:1px_solid_var(--border-subtle)] shadow-[var(--shadow-sm)] hover:bg-[var(--bg-subtle)] hover:border-[var(--border-hover)] hover:[transform:translateY(-1px)] [text-decoration:none] self-start">
+          View Blog Page
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <a href={featuredPost.slug} class="block [text-decoration:none] text-[inherit]">
+      <article class="bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] rounded-[12px] p-[1.5rem] [transition:transform_var(--transition-base),_border-color_var(--transition-base),_box-shadow_var(--transition-base),_background-color_var(--transition-base)] shadow-[var(--shadow-sm)] relative hover:[transform:translateY(-2px)] hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-md)] hover:bg-[var(--bg-card-hover)] p-[2rem] flex flex-col gap-[1.15rem] cursor-pointer group max-[640px]:p-[1.5rem]">
+        <div class="flex items-center gap-[0.65rem]">
+          <span class="inline-flex items-center gap-[0.35rem] font-mono text-[0.75rem] font-medium p-[0.25rem_0.65rem] rounded-[6px] bg-[var(--badge-bg)] text-[var(--badge-text)] [border:1px_solid_var(--badge-border)] [transition:all_var(--transition-fast)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] bg-[var(--accent-subtle)] text-[var(--accent)] border-[var(--border-accent)]">{featuredPost.category}</span>
+          <span class="font-mono text-[0.8125rem] text-[var(--text-muted)]">{featuredPost.date}</span>
+          <span class="text-[var(--text-faint)] text-[0.75rem]">•</span>
+          <span class="font-mono text-[0.8125rem] text-[var(--text-muted)]">{featuredPost.readingTime}</span>
+        </div>
+
+        <h3 class="text-[1.45rem] font-bold text-[var(--text-primary)] leading-[1.35] tracking-[-0.02em] [transition:color_var(--transition-fast)] group-hover:text-[var(--accent)] max-[640px]:text-[1.25rem]">
+          {featuredPost.title}
+        </h3>
+
+        <p class="text-[0.9625rem] leading-[1.65] text-[var(--text-secondary)]">
+          {featuredPost.excerpt}
+        </p>
+
+        <div class="flex justify-between items-center flex-wrap gap-[1rem] pt-[0.85rem] [border-top:1px_dashed_var(--border-subtle)]">
+          <div class="flex flex-wrap gap-[0.45rem]">
+            {featuredPost.tags.map((tag) => (
+              <span class="inline-flex items-center gap-[0.35rem] font-mono text-[0.75rem] font-medium p-[0.25rem_0.65rem] rounded-[6px] bg-[var(--badge-bg)] text-[var(--badge-text)] [border:1px_solid_var(--badge-border)] [transition:all_var(--transition-fast)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)]">{tag}</span>
+            ))}
+          </div>
+
+          <span class="inline-flex items-center gap-[0.35rem] text-[0.875rem] font-semibold text-[var(--accent)] [transition:transform_var(--transition-fast)] group-hover:[&_svg]:[transform:translateX(3px)]">
+            Read article
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </article>
+    </a>
+  </div>
+</section>
+
+
+
+</main>
+<footer class="[border-top:1px_solid_var(--border-subtle)] p-[3rem_0] bg-[var(--bg-subtle)] mt-[auto]">
+  <div class="w-[100%] max-w-[980px] ml-[auto] mr-[auto] pl-[1.5rem] pr-[1.5rem] max-[768px]:pl-[1.25rem] max-[768px]:pr-[1.25rem] flex justify-between items-center flex-wrap gap-[1.5rem] max-[680px]:flex-col max-[680px]:items-start max-[680px]:gap-[1.25rem]">
+    <div class="flex flex-col gap-[0.35rem]">
+      <p class="text-[0.8125rem] text-[var(--text-muted)]">
+        © {currentYear} Yashpreet Singh Jagdev 
+      </p>
+    </div>
+
+    <div class="flex items-center gap-[1.5rem] max-[680px]:w-[100%] max-[680px]:justify-between">
+      <div class="flex items-center gap-[0.65rem]">
+        <a 
+          href="https://github.com/Yashpreet-Singh-Jagdev" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-[0.875rem] text-[var(--text-secondary)] [transition:color_var(--transition-fast)] hover:text-[var(--accent)]"
+        >
+          GitHub
+        </a>
+        <span class="text-[var(--text-faint)]">•</span>
+        <a 
+          href="https://www.linkedin.com/in/yashpreet-singh-jagdev-1751b0253/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-[0.875rem] text-[var(--text-secondary)] [transition:color_var(--transition-fast)] hover:text-[var(--accent)]"
+        >
+          LinkedIn
+        </a>
+        <span class="text-[var(--text-faint)]">•</span>
+        <a 
+          href="mailto:yashpreet369@gmail.com" 
+          class="text-[0.875rem] text-[var(--text-secondary)] [transition:color_var(--transition-fast)] hover:text-[var(--accent)]"
+        >
+          Email
+        </a>
+      </div>
+
+      <button type="button" id="back-to-top" class="inline-flex items-center gap-[0.35rem] text-[0.8125rem] text-[var(--text-muted)] p-[0.35rem_0.65rem] rounded-[6px] bg-[var(--bg-card)] [border:1px_solid_var(--border-subtle)] [transition:all_var(--transition-fast)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]" aria-label="Back to top">
+        Back to top
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+  // Theme Toggle Logic
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  themeToggle?.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('theme', nextTheme);
+  });
+
+  // Mobile Menu Logic
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+
+  mobileToggle?.addEventListener('click', () => {
+    const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+    mobileToggle.setAttribute('aria-expanded', String(!isExpanded));
+    mobileDrawer?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when links are clicked
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileToggle?.setAttribute('aria-expanded', 'false');
+      mobileDrawer?.classList.add('hidden');
+    });
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.copy-tile-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const val = (btn as HTMLElement).dataset.copyVal;
+      if (val) {
+        navigator.clipboard.writeText(val).then(() => {
+          // @ts-ignore
+          if (window.showToast) {
+            // @ts-ignore
+            window.showToast(`${val} copied to clipboard!`);
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<script>
+  const backToTopBtn = document.getElementById('back-to-top');
+  backToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
