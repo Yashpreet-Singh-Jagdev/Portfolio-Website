@@ -120,15 +120,6 @@ const personSchema = {
   <body>
     <slot />
 
-
-    <!-- Toast Notification for interactive copy feedback -->
-    <div id="toast-notification" role="status" aria-live="polite">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-      <span id="toast-message">Email copied to clipboard!</span>
-    </div>
-
     <!-- Global Toast Script -->
     <script>
       window.showToast = function(message = 'Copied to clipboard!') {
